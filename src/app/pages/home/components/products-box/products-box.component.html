@@ -1,0 +1,52 @@
+<mat-card [ngClass]="{'text-center': !fullWidthMode}" *ngIf="!filteredData">
+  <div [ngClass]="{'flex': fullWidthMode, 'items-center': fullWidthMode}">
+    <div>
+      <img
+      class="p-4 object-contain"
+      src="{{data.image}}"
+      [ngClass]="{ 'h-[190px]': !fullWidthMode, 'h-[350px]': fullWidthMode }"
+    />
+    </div>
+    <div class="w-full">
+      <div>
+        <h5>{{data.category}}</h5>
+        <p class="truncate hover:whitespace-normal px-3">{{data.title}}</p>
+        <p *ngIf="fullWidthMode">{{data.description}}</p>
+      </div>
+      <div class="flex justify-between mb-3" [ngClass]="{'px-2': !fullWidthMode}">
+        <span class="text-red-600 font-bold">
+          {{ data.price | currency }}
+        </span>
+        <button mat-icon-button (click)="addToCart(data)">
+          <mat-icon class="text-red-600"> shopping_cart </mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-card>
+<mat-card [ngClass]="{'text-center': !fullWidthMode}" *ngIf="filteredData">
+  <div [ngClass]="{'flex': fullWidthMode, 'items-center': fullWidthMode}">
+    <div>
+      <img
+      class="p-4 object-contain"
+      src="{{filteredData.image}}"
+      [ngClass]="{ 'h-[190px]': !fullWidthMode, 'h-[350px]': fullWidthMode }"
+    />
+    </div>
+    <div class="w-full">
+      <div>
+        <h5>{{filteredData.category}}</h5>
+        <p class="truncate hover:whitespace-normal px-3">{{filteredData.title}}</p>
+        <p *ngIf="fullWidthMode">{{filteredData.description}}</p>
+      </div>
+      <div class="flex justify-between mb-3" [ngClass]="{'px-2': !fullWidthMode}">
+        <span class="text-red-600 font-bold">
+          {{ filteredData.price | currency }}
+        </span>
+        <button mat-icon-button (click)="addToCart(filteredData)">
+          <mat-icon class="text-red-600"> shopping_cart </mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-card>
