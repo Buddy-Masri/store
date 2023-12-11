@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Cart } from "src/app/models/cart";
 import { AddToCartService } from "src/app/services/cart.services";
 import { Item } from "src/app/models/cart";
+import { HttpClient } from "@angular/common/http";
+import { async } from "rxjs";
+import { loadStripe } from "@stripe/stripe-js";
 
 @Component({
   selector: "app-cart",
@@ -9,7 +12,7 @@ import { Item } from "src/app/models/cart";
   styles: [],
 })
 export class CartComponent implements OnInit {
-  constructor(private cartSrvc: AddToCartService) {}
+  constructor(private cartSrvc: AddToCartService, private http: HttpClient) {}
 
   dataSource: Array<Item> = [];
 
@@ -46,5 +49,14 @@ export class CartComponent implements OnInit {
 
   clearAll() {
     this.cartSrvc.clearCart();
+  }
+
+  onCheckout() {
+    // this.http.post("http://localhost:4242/checkout", {
+    //   items: this.dataSource,
+    // }).subscribe(async(res:any)=>{
+    //   let stripe = await loadStripe()
+
+    // })
   }
 }
