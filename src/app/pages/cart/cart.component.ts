@@ -16,8 +16,7 @@ import { loadStripe } from "@stripe/stripe-js";
 export class CartComponent implements OnInit {
   constructor(private cartSrvc: AddToCartService, private http: HttpClient) {}
 
-  
-  url = "https://node-server-c9am.onrender.com"
+
   dataSource: Array<Item> = [];
 
   displayColumns: Array<string> = [
@@ -56,7 +55,7 @@ export class CartComponent implements OnInit {
   }
 
   onCheckout() {
-    this.http.post(`${this.url}/checkout`, {
+    this.http.post("https://node-server-c9am.onrender.com/checkout", {
       items: this.dataSource,
     }).subscribe(async(res:any)=>{
       let stripe = await loadStripe('pk_test_51OEH94FzdGfXZ9DkDKbvpUhsf7qOX0ZLS5yk5z9WcgIl2IJhCV96dHHJVnxMXxanw6MuAe88H7TkFKd5yacX7VO800fNW0La0s')
